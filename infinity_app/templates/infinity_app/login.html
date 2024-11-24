@@ -1,0 +1,13 @@
+{% extends 'infinity_app/base.html' %}
+
+{% block title %}Inicia sesión{% endblock %}
+
+{% block content %}
+<h2>Inicia sesión</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Iniciar sesión</button>
+</form>
+<p>¿No tienes una cuenta? <a href="{% url 'signup' %}">Regístrate aquí</a>.</p>
+{% endblock %}

@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Usuario</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'usuarios/style.css' %}">
+</head>
+<body>
+    
+    <h1>Perfil de {{ usuario.username }}</h1>
+    {% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if usuario.perfil.foto %}
+    <img src="{{ usuario.perfil.foto.url }}" alt="Foto de perfil" style="width: 150px; height: 150px; border-radius: 50%;">
+{% else %}
+    <p>No tienes una foto de perfil.</p>
+{% endif %}
+
+    <p>Nombre de usuario: {{ usuario.username }}</p>
+    <p>Correo electrónico: {{ usuario.email }}</p>
+    <p>Fecha de registro: {{ usuario.date_joined }}</p>
+    <p>Última vez activo: {{ usuario.last_login }}</p>
+    {% if usuario.perfil.foto %}
+    <form method="post" action="{% url 'eliminar_foto' %}">
+        {% csrf_token %}
+        <button type="submit">Eliminar foto</button>
+    </form>
+{% endif %}
+    <a href="{% url 'editar_perfil' %}">Editar mi perfil</a><br/><br/>
+
+    <a href="{% url 'cambiar_contrasena' %}">Cambiar contraseña</a><br/><br/>
+
+
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+</body>
+</html>

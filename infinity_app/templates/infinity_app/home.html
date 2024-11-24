@@ -1,0 +1,64 @@
+{% extends 'infinity_app/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h2>Bienvenido a Infinity App</h2>
+
+{% if user.is_authenticated %}
+    <p>Hola, {{ user.username }}. ¡Bienvenido a Infinityapp!</p>
+    <p>A continuación, puedes encontrar toda la información relacionada con la app y los detalles sobre el <strong>Grupo Infinity Servicios</strong>.</p>
+    
+    <section>
+        <h2>Requisitos para Participar en el Grupo</h2>
+        <p>Para formar parte del Grupo Infinity, es imprescindible cumplir con los siguientes requisitos:</p>
+        <ul>
+            <li>Ser autónomo.</li>
+            <li>Contar con los cursos obligatorios relacionados con tu área de trabajo.</li>
+            <li>Estar al corriente de pagos con Hacienda.</li>
+            <li>Estar al corriente de pagos con la Seguridad Social.</li>
+            <li>Disponer de un seguro de responsabilidad civil (RC).</li>
+            <li>Tener carnet de conducir y vehículo propio.</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Roles dentro del Grupo</h2>
+        <h3>Participante Activo</h3>
+        <p>Autónomo que realiza la parte técnica del trabajo, cubriendo el servicio físico requerido por el cliente.</p>
+        <h3>Participante Pasivo</h3>
+        <p>Autónomo encargado de gestionar la comunicación entre el cliente y el técnico, además de supervisar que el trabajo se lleve a cabo conforme al presupuesto y contrato establecidos.</p>
+    </section>
+    <section>
+        <h2>Reglas del Grupo</h2>
+        <ol>
+            <li>
+                <strong>Compromiso con Infinity:</strong>
+                <ul>
+                    <li>Todo participante activo debe firmar un contrato de compromiso con Infinity.</li>
+                    <li>Queda prohibido realizar presupuestos de manera directa o secreta con el cliente sin comunicarlo previamente al soporte del Grupo Infinity.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Transparencia y Comunicación:</strong>
+                <p>Es obligatorio informar sobre cualquier dato o situación que pueda afectar al presupuesto firmado con el cliente.</p>
+            </li>
+            <li>
+                <strong>Prioridad de Clientes:</strong>
+                <p>Si un vecino solicita un presupuesto para un servicio, este debe ser comunicado al grupo. Tendrá prioridad el autónomo que haya publicado primero la solicitud del cliente.</p>
+            </li>
+            <li>
+                <strong>Trato con el Cliente:</strong>
+                <p>Comunicarse con el cliente con educación y humildad en todo momento.</p>
+            </li>
+            <li>
+                <strong>Presentación y Limpieza:</strong>
+                <p>Garantizar una buena presencia personal y mantener limpio el entorno de trabajo.</p>
+            </li>
+        </ol>
+    </section>
+
+    <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+{% else %}
+    <p>Por favor, <a href="{% url 'login' %}">inicia sesión</a> o <a href="{% url 'signup' %}">regístrate</a>.</p>
+{% endif %}
+{% endblock %}
